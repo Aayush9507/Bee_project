@@ -1,9 +1,7 @@
 from __future__ import division, print_function
 
 import pickle as cPickle
-import random
 
-import numpy as np
 import tflearn
 from tflearn.layers.conv import conv_2d, max_pool_2d
 from tflearn.layers.core import input_data, dropout, fully_connected
@@ -47,22 +45,6 @@ def train_image_ann(network, eta_vals, mini_batch_sizes, num_epochs, path):
         nets.SGD(train_d, num_epochs, mini_batch, eta, test_d)
         name = path+nn_arch_naming(nets.sizes, eta, mini_batch)
         save(nets, name)
-
-# def train_audio_ann(network, eta_vals, mini_batch_sizes, num_epochs, path):
-#     """This function loads training,testing and validation data from load_data_wrapper_audio()
-#      which is imported from data_loader.py.
-#     Image ANN takes the network list, eta values list , mini batch size list , number of
-#     epochs and path where trained network should be persisted as parameters.Save function
-#     inside will save the trained model to specified path with its name as it's architecture"""
-#     #Audio Nets
-#     train_d, valid_d, test_d = load_data_wrapper_audio()
-#     print("inside audio train")
-#     for nets in network:
-#         eta = eta_vals[random.randrange(len(eta_vals))]
-#         mini_batch = mini_batch_sizes[random.randrange(len(mini_batch_sizes))]
-#         nets.SGD(train_d, num_epochs, mini_batch, eta, test_d)
-#         name = path+nn_arch_naming(nets.sizes, eta, mini_batch)
-#         save(nets, name)
 
 
 """=================================CONVOLUTION NEURAL NETS======================================"""

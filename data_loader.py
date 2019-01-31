@@ -51,11 +51,13 @@ buzz_cricket_train_path = os.getcwd() + "/BUZZ2Set/train/cricket_train/"
 buzz_noise_train_path = os.getcwd() + "/BUZZ2Set/train/noise_train/"
 
 """---------------------------------buzzBee test waves--------------------------------"""
+
+
 def process_bee_test_waves():
-    wavenames1 = glob.glob(buzz_bee_test_path +"*.wav")
-    for nmes1 in wavenames1:
-        if not nmes1.startswith('.'):
-            buzz_bee_test_waves.append(nmes1)
+    waves = glob.glob(buzz_bee_test_path +"*.wav")
+    for names in waves:
+        if not names.startswith('.'):
+            buzz_bee_test_waves.append(names)
     for waves1 in buzz_bee_test_waves:
         samplerate, audio = wavfile.read(waves1)
         audio = fft(audio)
@@ -65,9 +67,11 @@ def process_bee_test_waves():
 
 
 """---------------------------------buzzBee train waves--------------------------------"""
+
+
 def process_bee_train_waves():
-    wavenames2 = glob.glob(buzz_bee_train_path +"*.wav")
-    for nmes2 in wavenames2:
+    waves = glob.glob(buzz_bee_train_path +"*.wav")
+    for nmes2 in waves:
         if not nmes2.startswith('.'):
             buzz_bee_train_waves.append(nmes2)
     for waves2 in buzz_bee_train_waves:
@@ -80,9 +84,10 @@ def process_bee_train_waves():
 
 """---------------------------------buzzCricket test waves--------------------------------"""
 
+
 def process_cricket_test_waves():
-    wavenames3 = glob.glob(buzz_cricket_test_path +"*.wav")
-    for nmes3 in wavenames3:
+    waves = glob.glob(buzz_cricket_test_path +"*.wav")
+    for nmes3 in waves:
         if not nmes3.startswith('.'):
             buzz_cricket_test_waves.append(nmes3)
 
@@ -95,9 +100,11 @@ def process_cricket_test_waves():
 
 
 """---------------------------------buzzCricket train waves--------------------------------"""
+
+
 def process_cricket_train_waves():
-    wavenames4 = glob.glob(buzz_cricket_train_path +"*.wav")
-    for nmes4 in wavenames4:
+    waves = glob.glob(buzz_cricket_train_path +"*.wav")
+    for nmes4 in waves:
         if not nmes4.startswith('.'):
             buzz_cricket_train_waves.append(nmes4)
 
@@ -110,9 +117,11 @@ def process_cricket_train_waves():
 
 
 """---------------------------------buzzNoise test waves--------------------------------"""
+
+
 def process_noise_test_waves():
-    wavenames5 = glob.glob(buzz_noise_test_path +"*.wav")
-    for nmes5 in wavenames5:
+    waves = glob.glob(buzz_noise_test_path +"*.wav")
+    for nmes5 in waves:
         if not nmes5.startswith('.'):
             buzz_noise_test_waves.append(nmes5)
 
@@ -125,9 +134,11 @@ def process_noise_test_waves():
 
 
 """---------------------------------buzzNoise train waves--------------------------------"""
+
+
 def process_noise_train_waves():
-    wavenames6 = glob.glob(buzz_noise_train_path +"*.wav")
-    for nmes6 in wavenames6:
+    waves = glob.glob(buzz_noise_train_path +"*.wav")
+    for nmes6 in waves:
         if not nmes6.startswith('.'):
             buzz_noise_train_waves.append(nmes6)
 
@@ -140,6 +151,8 @@ def process_noise_train_waves():
 
 
 """---------------------------------bee test images--------------------------------"""
+
+
 for x in os.listdir(bee_test_path):
     if not x.startswith('.'):
         bee_test_folderlist.append(x)
@@ -157,6 +170,8 @@ for images in bee_test_images:
     processed_bee_test_images.append(flattened_image)
 
 """---------------------------------no bee test images--------------------------"""
+
+
 for x in os.listdir(no_bee_test_path):
     if not x.startswith('.'):
         no_bee_test_folderlist.append(x)
@@ -174,6 +189,8 @@ for images in nobee_test_images:
     processed_nobee_test_images.append(flattened_image)
 
 """---------------------------------bee train images-----------------------------"""
+
+
 for x in os.listdir(bee_train_path):
     if not x.startswith('.'):
         bee_train_folderlist.append(x)
@@ -192,6 +209,8 @@ for images in bee_train_images:
     processed_bee_train_images.append(flattened_image)
 
 """---------------------------------No bee train images---------------------------"""
+
+
 for x in os.listdir(no_bee_train_path):
     if not x.startswith('.'):
         no_bee_train_folderlist.append(x)
@@ -281,6 +300,7 @@ def vectorized_result(j):
     e = np.zeros((2, 1))
     e[j] = 1.0
     return e
+
 
 def vectorized_result_audio(j):
     e = np.zeros((3, 1))

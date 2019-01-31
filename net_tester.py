@@ -1,9 +1,6 @@
 import pickle as cPickle
-import numpy as np
 import tensorflow as tf
 import tflearn
-from scipy.fftpack import fft
-from scipy.io import wavfile
 from tflearn.layers.conv import conv_2d, max_pool_2d
 from tflearn.layers.core import input_data, fully_connected
 
@@ -55,10 +52,9 @@ def fit_image_cnn(cnn,image_path):
     else:
         return [0,1]
 
+
 def fit_audio_ann(ann, audio_path):
-    t1 = 0
-    t2 = 0.2
-    t3 = 0.9
+
     mylist=[]
     samplerate, audio = wavfile.read(audio_path)
     audio = fft(audio)
@@ -70,16 +66,6 @@ def fit_audio_ann(ann, audio_path):
     prediction = np.zeros_like(y_hat)
     prediction[0][(np.argmax(y_hat))] = 1.0
     return prediction
-    # if (ann.predict(audio))[2] < t1:
-    #       return [1,0,0]
-    # elif (ann.predict(audio))[0] > t3:
-    #     return [1,0,0]
-    # elif float((ann.predict(audio))[1]) > t2:
-    #       return [0,1,0]
-    # elif float((ann.predict(audio))[0]) > 0.002 and float((ann.predict(audio))[0]) < 0.005:
-    #     return [0,1,0]
-    # else:
-    #     return [0,0,1]
 
 
 def fit_audio_cnn(cnn,audio_path):
@@ -100,7 +86,6 @@ def fit_audio_cnn(cnn,audio_path):
         return [0,0,1]
 
 
-
 def load_imageconvnet(path):
 
     input_layer = input_data(shape=[None, 32, 32, 1])
@@ -117,6 +102,7 @@ def load_imageconvnet(path):
     model.load(path)
     return model
 
+
 def load_audioconvnet(path):
     input_layer = input_data(shape=[None, 70, 70, 1])
     conv_layer = conv_2d(input_layer, nb_filter=16, filter_size=3,
@@ -131,6 +117,7 @@ def load_audioconvnet(path):
     model = tflearn.DNN(fc_layer_2)
     model.load(path)
     return model
+
 
 def load_audio_ann(path):
     input_layer = tflearn.input_data(shape=[None, 80, 80, 1])
